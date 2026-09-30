@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全謎解説サイト - 謎解き特設</title>
+    <style>
+        /* 全体の基本設定（スマホで見やすいデザイン） */
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Sans', Meiryo, sans-serif;
+            background-color: #fdf6e3; /* 目に優しい少しクリーム色の背景 */
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 10px;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* 謎の各ブロックのデザイン */
+        .puzzle-section {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+            margin-bottom: 40px;
+        }
+        .puzzle-title {
+            font-size: 20px;
+            font-weight: bold;
+            border-bottom: 3px solid #4fc3f7;
+            padding-bottom: 8px;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .puzzle-image img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            display: block;
+            margin: 0 auto 20px auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        /* 解答入力エリア */
+        .answer-box {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .answer-input {
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 300px;
+            box-sizing: border-box;
+        }
+        .answer-input:focus {
+            border-color: #4fc3f7;
+            outline: none;
+        }
+        .submit-btn {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .submit-btn:hover { background-color: #388e3c; }
+
+        /* 判定結果のメッセージ */
+        .result-message {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            min-height: 27px; /* 空の時のガタつき防止 */
+        }
+        .correct-text { color: #e53935; } /* 正解は赤 */
+        .incorrect-text { color: #555; } /* 不正解はグレー */
+
+        /* 解説エリア（初期は非表示） */
+        .explanation-area {
+            display: none;
+            background: #f1f8e9;
+            border: 2px solid #c5e1a5;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .explanation-area h3 {
+            margin-top: 0;
+            color: #2e7d32;
+        }
+
+        /* ギブアップ（解説を強制表示）ボタン */
+        .giveup-btn {
+            background: none;
+            border: none;
+            color: #1976d2;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 14px;
+            display: block;
+            margin: 0 auto;
+        }
+        .giveup-btn:hover { color: #0d47a1; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <!-- 公演名やイベント名に変更してください -->
+        公演名 全謎解説サイト
+    </header>
+
+    <main>
+        <!-- ▼▼▼ 第1の謎のブロック ▼▼▼ -->
+        <section class="puzzle-section" id="q1">
+            <h2 class="puzzle-title">第1の謎</h2>
+            
+            <div class="puzzle-image">
+                <!-- ここに問題画像のURLを入れます -->
+                <img src="https://via.placeholder.com/600x400?text=Problem+Image+1" alt="第1の謎">
+            </div>
+
+            <div class="answer-box">
+                <input type="text" id="input-q1" class="answer-input" placeholder="答えを入力（ひらがな等）">
+                <!-- checkAnswer('問題ID', ['正解1', '正解2']) のように設定します -->
+                <button class="submit-btn" onclick="checkAnswer('q1', ['こたえ', 'コタエ', 'kotae'])">解答する</button>
+            </div>
+            
+            <div id="msg-q1" class="result-message"></div>
+
+            <button class="giveup-btn" onclick="showExplanation('q1')">どうしても分からないので解説を見る</button>
+
+            <!-- 解説エリア（最初は隠れています） -->
+            <div id="exp-q1" class="explanation-area">
+                <h3>【解説】</h3>
+                <p>ここに解説文を書きます。<br>画像の下の文字をよく読むと、「こたえ」となります。</p>
+                <!-- 解説用の画像があれば追加 -->
+                <div class="puzzle-image">
+                    <img src="https://via.placeholder.com/600x300/e0f7fa/333?text=Explanation+Image" alt="解説画像">
+                </div>
+            </div>
+        </section>
+        <!-- ▲▲▲ 第1の謎のブロック ここまで ▲▲▲ -->
+
+
+        <!-- ▼▼▼ 第2の謎のブロック（使い回し用） ▼▼▼ -->
+        <section class="puzzle-section" id="q2">
+            <h2 class="puzzle-title">第2の謎</h2>
+            <div class="puzzle-image">
+                <img src="https://via.placeholder.com/600x400?text=Problem+Image+2" alt="第2の謎">
+            </div>
+            <div class="answer-box">
+                <input type="text" id="input-q2" class="answer-input" placeholder="答えを入力">
+                <button class="submit-btn" onclick="checkAnswer('q2', ['すいか', 'スイカ', 'watermelon'])">解答する</button>
+            </div>
+            <div id="msg-q2" class="result-message"></div>
+            <button class="giveup-btn" onclick="showExplanation('q2')">どうしても分からないので解説を見る</button>
+            <div id="exp-q2" class="explanation-area">
+                <h3>【解説】</h3>
+                <p>第2の謎の解説です...</p>
+            </div>
+        </section>
+        <!-- ▲▲▲ 第2の謎のブロック ここまで ▲▲▲ -->
+
+    </main>
+
+    <script>
+        // 入力された文字をきれいにする（全角英数を半角に、空白を削除など）
+        function normalizeText(text) {
+            return text.trim()
+                .replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
+                    return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+                })
+                .toLowerCase();
+        }
+
+        // 正誤判定をする関数
+        function checkAnswer(questionId, correctAnswersArray) {
+            // 入力された文字を取得
+            const rawInput = document.getElementById('input-' + questionId).value;
+            const userInput = normalizeText(rawInput);
+            const msgBox = document.getElementById('msg-' + questionId);
+
+            // 空欄の場合は何もしない
+            if (userInput === "") {
+                msgBox.innerText = "答えを入力してください。";
+                msgBox.className = "result-message incorrect-text";
+                return;
+            }
+
+            // 正解配列の中に、入力した文字が含まれているかチェック
+            let isCorrect = false;
+            for (let i = 0; i < correctAnswersArray.length; i++) {
+                if (userInput === normalizeText(correctAnswersArray[i])) {
+                    isCorrect = true;
+                    break;
+                }
+            }
+
+            if (isCorrect) {
+                // 正解の時の処理
+                msgBox.innerText = "⭕️ 正解！";
+                msgBox.className = "result-message correct-text";
+                // 自動で解説を表示する
+                showExplanation(questionId);
+            } else {
+                // 不正解の時の処理
+                msgBox.innerText = "❌ 不正解...";
+                msgBox.className = "result-message incorrect-text";
+            }
+        }
+
+        // 解説を強制的に表示する関数
+        function showExplanation(questionId) {
+            const expDiv = document.getElementById('exp-' + questionId);
+            expDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
